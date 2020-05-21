@@ -1,0 +1,57 @@
+/*
+Verde escuro: #248232
+Verde claro: #2ba84a
+Cinza médio: #2d3a3a
+*/
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body{
+	height: 100%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#container-form{
+	margin: 0 auto;
+	width: 440px;
+	height: 600px;
+	box-sizing: border-box;
+	padding: 5px 30px;
+}
+
+#my-form input, select, label{
+	padding-top: 10px;
+	display: block;
+}
+
+#container-button{
+	padding-top: 10px;
+}
+
+#my-form input{
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	box-sizing: border-box;
+	padding: 5px;
+	border: none;
+	border-bottom: 0.5px solid #2D3A3A;
+	outline: none;
+}
+
+#my-form input[type=file]{
+	border:none;
+}
+
+#container-button input[type=submit]{
+	border-radius: 2px;
+	background-color: #248232;
+	color: #ffffff;
+}
+
+#container-button input[type=submit]:hover{
+	background-color: #2ba84a;
+}
