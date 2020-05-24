@@ -47,11 +47,23 @@ html, body{
 }
 
 #container-button input[type=submit]{
-	border-radius: 2px;
-	background-color: #248232;
 	color: #ffffff;
+	border:none;
+	background-color: #248232;
+ 	border-radius: 5px;
+ 	font-weight: normal;
+	height: 42px;
+	outline: none;
+	cursor: pointer;
 }
 
 #container-button input[type=submit]:hover{
 	background-color: #2ba84a;
+}
+#container-sex{
+	padding-bottom: 42px;
+}
+
+#container-reserv{
+	display: none;
 }

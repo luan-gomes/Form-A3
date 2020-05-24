@@ -1,27 +1,80 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+	<!-- JQuery -->
+	<script src="js/jquery.js"></script>
+	<!-- JQuery para estilizar o select do formulário -->
+	<script src="js/jquery.nice-select.js"></script>
+	<script>
+		
+		$(document).ready(function(){
+
+			$("#enviar").click(function(){
+
+				var dados = $("#my-form").serialize();
+
+				$.ajax({
+		               type: 'POST',
+		               dataType: 'json',
+		               url: 'model/PessoaDAO.php',
+		               async: true,
+		               data: dados,
+		               success: function(response) {
+		                    location.reload();
+		                    console.log("foi");
+		               }
+		          });
+ 
+           		 return false;
+
+			});
+
+			//Liberar o input da reservista apenas se o sexo escolhido for masculino
+
+			$("select").change(function() {
+				if($('#sexo').val()=="M"){
+					$("#container-reserv").show(500);
+				} else {
+					$("#container-reserv").hide();
+				}
+			});
+
+			$('select').niceSelect();
+
+		});
+
+
+	</script>
+
 	<meta charset="UTF-8"/>
 	<title>A3 - Formulário</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<!-- CSS para estilizar o select do formulário -->
+	<link rel="stylesheet" href="css/nice-select.css">
+
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div id="container-form"> 
-		<form method="post" id="my-form">
+		<form action="" method="post" id="my-form">
 			<label for="nome">Nome completo</label>
 			<input type="text" name="nome" placeholder="Ex: João Silva" required/>
 			<label for="cpf">CPF</label>
 			<input type="text" name="cpf" placeholder="Ex: 000.000.000-00" required />
 			<label for="sexo">Sexo</label>
-			<select name="sexo" required>
-				<option value="" >Escolha uma opção</option>
-				<option value="F">Feminino</option>
-				<option value="M">Masculino</option>
-				<option value="O">Outro</option>
-			</select>
-			<label for="reservista">Número da reservista</label>
-			<input tyle="text" name="reservista" placeholder="Ex: 000000"/>
+			<div id="container-sex">
+				<select id="sexo" class="wide" name="sexo" required>
+					<option data-display="Escolha uma opção"></option>
+					<option value="F">Feminino</option>
+					<option value="M">Masculino</option>
+					<option value="O">Outro</option>
+				</select>
+			</div>
+			<div id="container-reserv">
+				<label for="reservista">Número da reservista</label>
+				<input type="text" name="reservista" placeholder="Ex: 000000"/>
+			</div>
 			<label for="perfil">Perfil</label>
 			<input type="file" name="perfil" required />
 			<label for="email">Email</label>
@@ -29,7 +82,7 @@
 			<label for="senha">Senha</label>
 			<input type="password" name="senha" placeholder ="Digite a sua senha" inputmode="numeric" minlength="4" maxlength="8" size="8" required />
 			<div id="container-button">
-				<input type="submit" name="acao" value="Enviar" />
+				<input id="enviar" type="submit" name="acao" value="Enviar" />
 			</div>
 		</form>
 	</div> <!-- container-form -->
