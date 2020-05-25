@@ -1,5 +1,6 @@
 <?php
 	class Pessoa{
+		
 		public $nome;
 		public $cpf;
 		public $sexo;
@@ -8,8 +9,8 @@
 		public $email;
 		public $senha;
 
-		function __construct($n, $cpf, $sexo, $link, $reserv, $email, $senha){
-			$this->nome = $n;
+		function __construct($nome, $cpf, $sexo, $link, $reserv, $email, $senha){
+			$this->nome = $nome;
 			$this->cpf = $cpf;
 			$this->sexo = $sexo;
 			$this->linkimage = $link;

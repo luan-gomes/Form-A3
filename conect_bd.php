@@ -1,28 +1,23 @@
 <?php
 
-$host = "localhost";
-$banco = "formulario";
-$usuario = "root";
-$senha = "";
-$pdo;
+define ('HOSTNAME','localhost');
+define ('USERNAME', 'root');
+define ('PASSWORD','');
+define ('DATABASE','web');
+define ('CHARSET','utf8');
 
 function abrirConexao(){
-	global $pdo, $host, $usuario, $senha, $banco;;
 
-	if($pdo == null){
-		try{
-			$pdo = new PDO('mysql:host='.$host.';dbname='.$banco,$usuario,$senha,array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-			$pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		}catch(Exception $e){
-					echo 'erro ao conectar';
-		}
-	}
+	$sql = mysqli_connect(HOSTNAME,USERNAME,PASSWORD,DATABASE) or die(mysqli_error());
+	mysqli_set_charset($sql,CHARSET) or die (mysqli_error($sql));
+	return $sql;
 
 }
 
-function fecharConexao(){
-	global $pdo;
-	$pdo=null;
+function fecharConexao($sql){
+
+	@mysqli_close($sql) or die (mysqli_error($sql));
+
 }
 
 ?>
